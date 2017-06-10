@@ -1,0 +1,7 @@
+int64 up
+int64 down
+int64 left
+int64 right
+---
+int64 x
+int64 y
