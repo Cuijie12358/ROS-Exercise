@@ -4,7 +4,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   message_generation
-  actionlib
+  geometry_msgs
 )
 
 add_service_files(
@@ -12,20 +12,13 @@ add_service_files(
    DirAndDis.srv
 )
 
-add_action_files(
-  DIRECTORY action
-  FILES Fibonacci.action
-)
-
 generate_messages(
   DEPENDENCIES
-  actionlib_msgs
   std_msgs
 )
 
 catkin_package(
-  CATKIN_DEPENDS message_runtime
-  actionlib_msgs
+  CATKIN_DEPENDS message_runtime geometry_msgs
 )
 
 
@@ -49,15 +42,7 @@ add_executable(dir_and_dis_client src/dir_and_dis_client.cpp)
 target_link_libraries(dir_and_dis_client ${catkin_LIBRARIES})
 add_dependencies(dir_and_dis_client testpack_gencpp)
 
-add_executable(fibonacci_server src/fibonacci_server.cpp)
-target_link_libraries(
-  fibonacci_server
-  ${catkin_LIBRARIES}
-)
-
-add_dependencies(
-  fibonacci_server
-  ${testpack_EXPORTED_TARGETS}
-)
+add_executable(teleop_wasd src/teleop_wasd.cpp)
+target_link_libraries(teleop_wasd ${catkin_LIBRARIES})
 
 
